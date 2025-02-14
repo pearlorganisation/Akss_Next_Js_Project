@@ -5,13 +5,13 @@ import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import Footer from "@/components/Footer"
+import Notify from "@/components/Notify"
 const VolumePage = () => {
   const [volume, setVolume] = useState(10)
   console.log("the volume value is", volume)
   return (
     <div className="min-h-screen flex flex-col">
       <header className="flex justify-end items-center p-6">
-        
         <Button variant="ghost" size="icon">
           <Menu className="h-6 w-6" />
         </Button>
@@ -96,6 +96,7 @@ const VolumePage = () => {
           </div>
         </div>
       </footer> */}
+      { volume < 51 &&  <div className="mx-16"><Notify /></div> }
       <Footer />
     </div>
   )
