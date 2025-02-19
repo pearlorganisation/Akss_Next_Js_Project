@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <div> <footer className="border-t">
-        <div className="container max-w-4xl mx-auto px-6 py-12">
+        <div className="container max-w-4xl mx-auto px-6">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="space-y-2">
               <a href="mailto:help@iona.ai" className="text-sm hover:underline">

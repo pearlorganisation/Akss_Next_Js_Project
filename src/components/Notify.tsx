@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 // Define form field types
 interface FormValues {
@@ -33,7 +34,13 @@ const Notify: React.FC = () => {
 
   // Handle form submission
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    console.log("Form Submitted:", data);
+    const config = {
+      headers:{
+        "Content-Type": "application/json"
+      }
+    }
+    const res = await axios.post(`/api/contact`, data,config)
+    console.log("the res is", res)
     toast.success("You will be notified!");
     reset(); // Clear form after submission
   };
@@ -99,7 +106,7 @@ const Notify: React.FC = () => {
           </div>
 
           {/* Submit Button */}
-          <Button type="submit" className="w-64">
+          <Button type="submit" className="w-96">
             Notify Me
           </Button>
         </form>
