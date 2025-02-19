@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const Footer = () => {
@@ -40,6 +41,9 @@ const Footer = () => {
             <a href="#" className="text-sm hover:underline">
               Privacy Policy
             </a>
+          </div>
+          <div>
+             <Link href="/admin/login">Admin Login</Link>
           </div>
         </div>
       </footer></div>
