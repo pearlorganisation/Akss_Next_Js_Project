@@ -9,9 +9,7 @@ import { SiteDrawer } from "@/components/SiteDrawer"
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="flex justify-end items-center p-6">
-        <SiteDrawer />
-      </header>
+      
 
       <main className="flex max-w-4xl ml-6 py-12">
         <div className="space-y-12">

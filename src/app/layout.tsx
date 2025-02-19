@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/ToastifyProvider";
+import { SiteDrawer } from "@/components/SiteDrawer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div> 
+          <header className="flex justify-end items-center p-6">
+                <SiteDrawer />
+              </header>
+           </div>
         <ToastProvider />
         {children}
       </body>

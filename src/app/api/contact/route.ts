@@ -29,10 +29,8 @@ export async function GET(req: NextRequest) {
     const page = parseInt(searchParams.get("page") || "1", 10);
     const limit = parseInt(searchParams.get("limit") || "10", 10);
 
-    // Ensure valid page & limit
     const skip = (page - 1) * limit;
 
-    // Fetch paginated data
     const data = await Contact.find().skip(skip).limit(limit);
     const totalContacts = await Contact.countDocuments();
 

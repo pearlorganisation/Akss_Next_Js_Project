@@ -12,15 +12,10 @@ const VolumePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="flex justify-end items-center p-4 sm:p-6">
-        <Button variant="ghost" size="icon">
-          <Menu className="h-6 w-6" />
-        </Button>
-      </header>
+      
 
       {/* Main Content */}
-      <main className="flex-1 container max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="flex max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="space-y-8 sm:space-y-12">
           {/* Title Section */}
           <div className="space-y-4 text-center sm:text-left">
@@ -45,24 +40,25 @@ const VolumePage = () => {
                 defaultValue={[10]}
                 max={1000}
                 step={1}
-                className="w-full transform transition-transform duration-75 ease-in-out group-hover:translate-y-0.5"
+                className="w-full bg-blue-700 transform transition-transform duration-75 ease-in-out group-hover:translate-y-0.5"
                 onValueChange={(e) => setVolume(e[0])}
               />
             </div>
+ 
 
             <p className="text-sm sm:text-base text-yellow-600 font-medium text-center sm:text-left">
               Start by dragging the slider to input your organization's hiring volume.
             </p>
+            
+            {/* Conditional Notification - Moved Closer */}
+            {volume < 51 && (
+              <div className="mt-4 sm:mt-6">
+                <Notify />
+              </div>
+            )}
           </div>
         </div>
       </main>
-
-      {/* Conditional Notification */}
-      {volume < 51 && (
-        <div className="mx-6 sm:mx-11 lg:mx-36">
-          <Notify />
-        </div>
-      )}
 
       {/* Footer */}
       <Footer />
