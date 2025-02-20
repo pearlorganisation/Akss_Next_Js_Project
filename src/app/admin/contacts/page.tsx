@@ -67,7 +67,7 @@ console.log("the single contact data is", singleContact)
   }
 
   return (
-    <main className="flex-1 p-8 mt-16 ml-64">
+    <main className="flex-1 p-8 ml-64">
             <div className='text-4xl font-bold mb-4'>All Hotels</div>
             <div>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

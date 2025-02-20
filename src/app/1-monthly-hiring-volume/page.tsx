@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import Footer from "@/components/Footer"
 import Notify from "@/components/Notify"
+import KeyChallenge from "@/components/KeyChallenge"
 
 const VolumePage = () => {
   const [volume, setVolume] = useState(10)
@@ -12,8 +13,6 @@ const VolumePage = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      
-
       {/* Main Content */}
       <main className="flex max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="space-y-8 sm:space-y-12">
@@ -51,11 +50,12 @@ const VolumePage = () => {
             </p>
             
             {/* Conditional Notification - Moved Closer */}
-            {volume < 51 && (
+            {volume > 0 && volume <=100?  (
               <div className="mt-4 sm:mt-6">
                 <Notify />
               </div>
-            )}
+
+            ): <div className="mt-4 sm:mt-6"><KeyChallenge /></div> }
           </div>
         </div>
       </main>

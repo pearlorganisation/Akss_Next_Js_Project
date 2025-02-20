@@ -32,7 +32,7 @@ export default function RootLayout({
         <div> 
           <header className="flex justify-end items-center p-6">
                 <SiteDrawer />
-              </header>
+          </header>
            </div>
         <ToastProvider />
         {children}
