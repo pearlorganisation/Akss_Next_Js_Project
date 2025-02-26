@@ -45,6 +45,15 @@ const Navbar = () => {
           Contacts
         </Link>
 
+        <Link
+          href="/admin/challenges"
+          className={`p-2 rounded-lg transition ${
+            pathname.startsWith("/admin/challenges") ? "bg-blue-600" : "hover:bg-gray-700"
+          }`}
+        >
+          Challenges
+        </Link>
+
     <button
       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
       onClick={() => {
