@@ -6,18 +6,11 @@ import { usePathname, useRouter } from "next/navigation";
 
 const Navbar = () => {
  const pathname = usePathname();
- const router = useRouter();
- const user = localStorage.getItem("isAdmin")
-  useEffect(() => {
-    if (localStorage.getItem("isAdmin") !== "true") {
-      router.push("/admin/login");
-    }else{
-        router.push(`/admin`)
-    }
-  }, []);
+ 
+ 
   return (
 <>
-  <div className={`h-screen w-64 ${user==="true"?"bg-gray-900":"bg-gray-100" }  text-white fixed top-0 left-0 flex flex-col p-6 shadow-lg`}>
+  <div className={`h-screen w-64 bg-gray-900 text-white fixed top-0 left-0 flex flex-col p-6 shadow-lg`}>
     
       <><h1 className="text-xl font-bold mb-6">Admin Panel</h1>
       <nav className="flex flex-col space-y-4">
