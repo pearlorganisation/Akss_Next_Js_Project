@@ -1,9 +1,23 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+  
+function Footer() {
+ const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-const Footer = () => {
+    useEffect(() => {
+        async function fetchAuthStatus() {
+            const res = await fetch("/api/auth-status");
+            const data = await res.json();
+            setIsLoggedIn(data.isLoggedIn);
+        }
+        fetchAuthStatus();
+    }, []);
+
   return (
-    <div> <footer className="border-t">
+    <div> 
+      <footer className="border-t">
         <div className="container max-w-4xl mx-auto px-6">
           <div className="grid gap-8 lg:grid-cols-3">
             <div className="space-y-2">
@@ -43,7 +57,7 @@ const Footer = () => {
             </a>
           </div>
           <div>
-             <Link href="/admin/login">Admin Login</Link>
+             {!isLoggedIn? <LoginLink>Sign In</LoginLink>:<LogoutLink>Sign Out</LogoutLink>}
           </div>
         </div>
       </footer></div>

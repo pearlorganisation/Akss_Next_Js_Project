@@ -1,16 +1,11 @@
-"use client"
+
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import Footer from "@/components/Footer"
-import { SiteDrawer } from "@/components/SiteDrawer"
-
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
-      
-
+    <div className="flex flex-col">
       <main className="flex max-w-4xl ml-6 py-12">
         <div className="space-y-12">
           <div className="space-y-4">
@@ -30,8 +25,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   )
 }

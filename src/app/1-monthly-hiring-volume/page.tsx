@@ -3,16 +3,14 @@ import { useState } from "react"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
-import Footer from "@/components/Footer"
-import Notify from "@/components/Notify"
+ import Notify from "@/components/Notify"
 import KeyChallenge from "@/components/KeyChallenge"
 
 const VolumePage = () => {
   const [volume, setVolume] = useState(10)
   console.log("The volume value is", volume)
-
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex flex-col">
       {/* Main Content */}
       <main className="flex max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="space-y-8 sm:space-y-12">
@@ -60,8 +58,7 @@ const VolumePage = () => {
         </div>
       </main>
 
-      {/* Footer */}
-      <Footer />
+    
     </div>
   )
 }

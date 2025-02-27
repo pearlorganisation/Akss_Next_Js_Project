@@ -1,4 +1,5 @@
 "use client"
+import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
  import { useEffect } from "react";
@@ -16,7 +17,7 @@ const Navbar = () => {
   }, []);
   return (
 <>
-{user =="true" ? <div className={`h-screen w-64 ${user==="true"?"bg-gray-900":"bg-gray-100" }  text-white fixed top-0 left-0 flex flex-col p-6 shadow-lg`}>
+  <div className={`h-screen w-64 ${user==="true"?"bg-gray-900":"bg-gray-100" }  text-white fixed top-0 left-0 flex flex-col p-6 shadow-lg`}>
     
       <><h1 className="text-xl font-bold mb-6">Admin Panel</h1>
       <nav className="flex flex-col space-y-4">
@@ -53,20 +54,14 @@ const Navbar = () => {
         >
           Challenges
         </Link>
-
-    <button
-      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-      onClick={() => {
-        localStorage.removeItem("isAdmin");
-        router.push("/");
-      }}
-    >
-      Logout
-    </button>
+    <LogoutLink       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+>
+      Log Out
+    </LogoutLink>
       </nav></>
      
        
-    </div>: <></> }
+    </div> 
     
     </>
   );

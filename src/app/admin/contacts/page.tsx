@@ -24,12 +24,12 @@ const ContactList = () => {
   const [ singleContact, setSingleContact] = useState<SingleContact>()
   const router = useRouter()
   /** verification to check if the admin is logged in or not */
-  useEffect(()=>{
-    const item = localStorage.getItem("isAdmin")
-    if(item !== "true"){
-        router.push(`/admin/login`)
-    }
-  },[])
+//   useEffect(()=>{
+//     const item = localStorage.getItem("isAdmin")
+//     if(item !== "true"){
+//         router.push(`/admin/login`)
+//     }
+//   },[])
   
   useEffect(()=>{
     const fetchData = async()=>{

@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/ToastifyProvider";
 import { SiteDrawer } from "@/components/SiteDrawer";
+ 
+import FooterWrapper from "@/components/FooterWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,19 +26,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+ 
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div> 
-          <header className="flex justify-end items-center p-6">
-                <SiteDrawer />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div>
+          <header className="flex gap-2 justify-end items-center p-6">
+            <SiteDrawer />
           </header>
-           </div>
+        </div>
         <ToastProvider />
         {children}
-      </body>
+          <FooterWrapper />
+       </body>
     </html>
   );
 }
