@@ -36,22 +36,25 @@ export const createChallenge = async(challenge: Challenge)=>{
     }
 }
 
-export const getAllTheChallenges = async()=>{
+export const getAllTheChallenges = async () => {
     try {
-        const { getRoles } = getKindeServerSession()
+        const { getRoles } = getKindeServerSession();
         const user = await getRoles();
 
-        if(user && user[0] && user[0].name==="ADMIN"){
-            await connectToDatabase()
+        if (user && user[0] && user[0].name === "ADMIN") {
+            await connectToDatabase();
             const data = await Challenge.find();
-            const res = JSON.parse(JSON.stringify(data));
+            const res = JSON.parse(JSON.stringify(data)); // Convert to plain JSON
 
-            if(res.length == 0){
-                return NextResponse.json({message:"No Data is Available"}, {status:404})
+            if (res.length === 0) {
+                return { message: "No Data is Available", status: 404 }; // ✅ Plain object
             }
-            return NextResponse.json({message:"data is fetched",data:res},{status:201})
+
+            return { message: "Data fetched", data: res, status: 200 }; // ✅ Plain object
         }
+
+        return { message: "Unauthorized", status: 403 }; // ✅ Plain object
     } catch (error) {
-        return error
+        return { error: (error as Error).message, status: 500 }; // ✅ Plain object
     }
-}
+};
