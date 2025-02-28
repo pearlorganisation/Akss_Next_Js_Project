@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddChallenge from "@/components/AddChallenge";
+import { getAllTheChallenges } from "@/lib/Database/Actions/ChallengeAction";
 
 const ChallengesList = () => {
   const [isOpen, setIsOpen] = useState(false); // ✅ Now works inside a Client Component
-
+ 
   return (
     <main className="flex-1 p-8 ml-64">
       <div>
