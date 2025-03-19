@@ -44,17 +44,46 @@ export const getAllTheChallenges = async () => {
         if (user && user[0] && user[0].name === "ADMIN") {
             await connectToDatabase();
             const data = await Challenge.find();
-            const res = JSON.parse(JSON.stringify(data)); // Convert to plain JSON
+            const res = JSON.parse(JSON.stringify(data));  
+            
 
             if (res.length === 0) {
-                return { message: "No Data is Available", status: 404 }; // ✅ Plain object
+                return { message: "No Data is Available", status: 404 };  
             }
 
-            return { message: "Data fetched", data: res, status: 200 }; // ✅ Plain object
+            return { message: "Data fetched", data: res, status: 200 }; 
         }
 
-        return { message: "Unauthorized", status: 403 }; // ✅ Plain object
+        return { message: "Unauthorized", status: 403 }; 
     } catch (error) {
-        return { error: (error as Error).message, status: 500 }; // ✅ Plain object
+        return { error: (error as Error).message, status: 500 };  
     }
+};
+
+export const deleteChallenge = async (id: string) => {
+  try {
+    console.log("Attempting to delete challenge with ID:", id);
+    const { getRoles } = getKindeServerSession();
+    const userRoles = await getRoles();
+
+    if (userRoles && userRoles[0]?.name === "ADMIN") {
+      await connectToDatabase();
+      const deletedChallenge = await Challenge.findByIdAndDelete(id);
+
+      if (!deletedChallenge) {
+        console.log("No data found for deletion");
+        return { message: "No Data Available", status: 404 };
+      }
+
+      console.log("Challenge deleted successfully, revalidating...");
+      revalidatePath("/admin"); // ✅ This should clear cache
+      return { message: "Successfully Deleted", status: 200 };
+    }
+
+    console.log("Unauthorized attempt to delete challenge");
+    return { message: "Unauthorized", status: 403 };
+  } catch (error) {
+    console.error("Error deleting challenge:", error);
+    return { message: "Server Error", status: 500, error };
+  }
 };
