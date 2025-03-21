@@ -4,11 +4,10 @@ import React, { useEffect, useState } from 'react'
 import {
     Button
 } from '@mui/material';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import Pagination from '@/components/pagination';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import ContactDetailsModal from '@/components/contactDetails';
 
 interface SingleContact{
     _id:string;
@@ -22,7 +21,7 @@ const ContactList = () => {
   const [contactId , setContactId] = useState<string | []>()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [ singleContact, setSingleContact] = useState<SingleContact>()
-  const router = useRouter()
+ 
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPagesRecieved,setTotalPages] = useState<number>() 
   const [contactsRecieved, setTotalContactsRecieved] = useState<number>() 
@@ -76,15 +75,19 @@ const ContactList = () => {
  const [openDetailsTab, setDetailsTab] = useState<boolean>(false);   
  const handleOpen = (data:SingleContact)=>{
    setSingleContact(data);
-
+   setDetailsTab(!openDetailsTab)
  }
 console.log("the single contact data is", singleContact)
-  console.log("the contact data is", contactData)
- 
+console.log("the contact data is", contactData)
+
+const handleClose =()=>{
+    setSingleContact(undefined)
+    setDetailsTab(false)
+}
 
   return (
     <main className="flex-1 p-8 ml-64">
-            <div className='text-4xl font-bold mb-4'>All Hotels</div>
+            <div className='text-4xl font-bold mb-4'>All Contacts</div>
             <div>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -156,6 +159,20 @@ console.log("the single contact data is", singleContact)
                     </div>
                 </div>
             )}
+
+             {/** details tab open */}
+             {openDetailsTab && (
+                // <div>
+                //     <h1>{singleContact?.name}</h1>
+                //     <h1>{singleContact?.email}</h1>
+                //     <h1>{singleContact?.message}</h1>
+                //     <h1>{singleContact?.company}</h1>
+                // </div>
+
+                <ContactDetailsModal isOpen={openDetailsTab} onClose={handleClose} contact={singleContact} />
+                )
+                
+                }
           {/**pagination is */}
           <Pagination paginate={paginateData} currentPage={currentPage} totalPages={totalPages ?? 0} handlePageClick={handlePageClick} />
     </main>

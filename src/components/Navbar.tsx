@@ -38,7 +38,7 @@ const Navbar = () => {
         >
           Contacts
         </Link>
-
+{/* 
         <Link
           href="/admin/challenges"
           className={`p-2 rounded-lg transition ${
@@ -46,7 +46,7 @@ const Navbar = () => {
           }`}
         >
           Challenges
-        </Link>
+        </Link> */}
     <LogoutLink       className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
 >
       Log Out
