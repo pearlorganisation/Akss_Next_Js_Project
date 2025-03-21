@@ -5,7 +5,7 @@ import ToastProvider from "@/components/ToastifyProvider";
 import { SiteDrawer } from "@/components/SiteDrawer";
  
 import FooterWrapper from "@/components/FooterWrapper";
-import Header from "@/components/Header";
+import HeaderWrapper from "@/components/HeaderWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} ${michroma.className} antialiased`}>
         <div>
 
-          <Header/>
+          <HeaderWrapper/>
       
         </div>
         <ToastProvider />
