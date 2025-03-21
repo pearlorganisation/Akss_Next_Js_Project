@@ -27,8 +27,9 @@ export async function GET(req: NextRequest) {
     // Get query parameters for pagination
     const { searchParams } = new URL(req.url);
     const page = parseInt(searchParams.get("page") || "1", 10);
-    const limit = parseInt(searchParams.get("limit") || "10", 10);
+    const limit = parseInt(searchParams.get("limit") || "1", 10);
 
+    console.log("the  limit is", limit)
     const skip = (page - 1) * limit;
 
     const data = await Contact.find().skip(skip).limit(limit);
@@ -51,5 +52,23 @@ export async function GET(req: NextRequest) {
       { message: "Something went wrong. Please try again." },
       { status: 500 }
     );
+  }
+}
+
+
+export async function DELETE(req:NextRequest) {
+  try {
+    await connectToDatabase()
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id")
+    if(id !== undefined){
+      const data = await Contact.findByIdAndDelete(id)
+      if(data){
+        return NextResponse.json({message:"Deleted Successfully"}, {status:201})
+      }
+      return NextResponse.json({message:"Server error"},{status:400})
+    }
+  } catch (error) {
+    return NextResponse.json({message:"Failed to delete"},{status:401})
   }
 }

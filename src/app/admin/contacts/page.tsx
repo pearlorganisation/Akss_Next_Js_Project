@@ -6,6 +6,9 @@ import {
 } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Pagination from '@/components/pagination';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 interface SingleContact{
     _id:string;
@@ -15,50 +18,69 @@ interface SingleContact{
     message:string
 }
 const ContactList = () => {
-
-
-  const [currentPage, setCurrentPage] = useState(1)
-  const [contactData, setContactData] = useState<{ data: SingleContact[], totalContacts: number }>()
+  const [contactData, setContactData] = useState<{ data: SingleContact[],totalContacts: number }>()
   const [contactId , setContactId] = useState<string | []>()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false)
   const [ singleContact, setSingleContact] = useState<SingleContact>()
   const router = useRouter()
- 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPagesRecieved,setTotalPages] = useState<number>() 
+  const [contactsRecieved, setTotalContactsRecieved] = useState<number>() 
+  const paginateData = {
+    limit: 10,
+    total: contactsRecieved ?? 0 // Provide a default value of 0 if undefined
+  }
+  const totalPages = totalPagesRecieved
+
+  const handlePageClick = (page:number)=>{
+    if(page > 0 && page <= (totalPages ?? 0)){
+        setCurrentPage(page)
+    }
+  }
   
   useEffect(()=>{
     const fetchData = async()=>{
-      const res = await axios.get(`/api/contact`)
+      const res = await axios.get(`/api/contact?page=${currentPage}&limit=10`)
       const data = res;
       if(data?.data){
         setContactData(data?.data);
-      }
+        setTotalPages(data?.data?.totalPages)
+        setTotalContactsRecieved(data?.data?.totalContacts)
+       }
     }
     fetchData()
-  },[])
+  },[currentPage])
 
+  console.log("the contact data is", contactData)
   
   const deleteHandle = (id: string) => {
         setContactId(id)
         setIsDeleteModalOpen(!isDeleteModalOpen)
     }
 
-    const confirmDelete =()=>{
-                // dispatch(deleteHotel(hotelId))
-                setIsDeleteModalOpen(!isDeleteModalOpen)
+   const handleDeleteConfirm = async ()=>{
+    try {
+        const data = await axios.delete(`/api/contact?id=${contactId}`)
+        if(data){
+            toast.success("Deleted successfully",{position:"top-right"})
+        }
+    } catch (error) {
+        console.log("the error", error)
     }
-          
+   } 
+    const confirmDelete =()=>{
+      handleDeleteConfirm()
+      setIsDeleteModalOpen(!isDeleteModalOpen)
+    }
+  
+ const [openDetailsTab, setDetailsTab] = useState<boolean>(false);   
  const handleOpen = (data:SingleContact)=>{
    setSingleContact(data);
+
  }
 console.log("the single contact data is", singleContact)
   console.log("the contact data is", contactData)
-  const totalPages = 5
-
-  const handlePageChange=(page:number)=>{
-    if(page>=1 && page < totalPages ){
-        setCurrentPage(page)
-    }
-  }
+ 
 
   return (
     <main className="flex-1 p-8 ml-64">
@@ -116,11 +138,26 @@ console.log("the single contact data is", singleContact)
                     </tfoot>
                 </table>
             </div>
-           
-            {/**Pagination  */}
-            {/* <Pagination totalPages={TotalPage} currentPage={currentPage} paginate={paginate} handlePageClick={handlePageChange} /> */}
-            {/** delete modal */}
-            {/* {isDeleteModalOpen && <ConfirmDeleteModal confirmDelete={confirmDelete} setShowDeleteModal={deleteHandle} />}                 */}
+            {isDeleteModalOpen && (
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+                        <h2 className="text-lg font-bold mb-4">Confirm Deletion</h2>
+                        <p className="text-sm text-gray-600 mb-6">
+                            Are you sure you want to delete this contact? This action cannot be undone.
+                        </p>
+                        <div className="flex justify-end gap-4">
+                            <Button variant="outlined" color="primary" onClick={() => setIsDeleteModalOpen(false)}>
+                                Cancel
+                            </Button>
+                            <Button variant="contained" color="error" onClick={confirmDelete}>
+                                Confirm Delete
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            )}
+          {/**pagination is */}
+          <Pagination paginate={paginateData} currentPage={currentPage} totalPages={totalPages ?? 0} handlePageClick={handlePageClick} />
     </main>
   )
 }
