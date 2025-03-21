@@ -49,9 +49,9 @@ const Notify: React.FC = () => {
     <Dialog>
       <DialogTrigger
         asChild
-        className="w-[20%] bg-[#001A72] flex justify-center items-center  hover:bg-blue-500"
+        className="w-[30%] md:w-[20%] bg-[#001A72] flex justify-center items-center  hover:bg-blue-500"
       >
-        <Button variant="default" size="lg" className="text-white font-bold">
+        <Button variant="default"  className="text-white font-bold lg:text-2xl">
           Notify Me
         </Button>
       </DialogTrigger>
