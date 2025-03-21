@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono , Michroma } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/ToastifyProvider";
 import { SiteDrawer } from "@/components/SiteDrawer";
  
 import FooterWrapper from "@/components/FooterWrapper";
+import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const michroma = Michroma({
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const geistMono = Geist_Mono({
@@ -29,11 +35,11 @@ export default function RootLayout({
  
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${michroma.className} antialiased`}>
         <div>
-          <header className="flex gap-2 justify-end items-center p-6">
-            <SiteDrawer />
-          </header>
+
+          <Header/>
+      
         </div>
         <ToastProvider />
         {children}

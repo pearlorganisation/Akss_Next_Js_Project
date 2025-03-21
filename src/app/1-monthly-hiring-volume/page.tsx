@@ -5,24 +5,38 @@ import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
  import Notify from "@/components/Notify"
 import KeyChallenge from "@/components/KeyChallenge"
+import Image from "next/image"
 
+import MyImage from "../../../public/image1.png";
+
+
+// slider 
 const VolumePage = () => {
+  const [isClicked, setIsClicked ] = useState(false);
   const [volume, setVolume] = useState(10)
   console.log("The volume value is", volume)
   return (
     <div className="flex flex-col">
       {/* Main Content */}
-      <main className="flex max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <main className="flex  mx-auto px-4 sm:px-6 lg:px-16 py-8 sm:py-12">
         <div className="space-y-8 sm:space-y-12">
           {/* Title Section */}
-          <div className="space-y-4 text-center sm:text-left">
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+         
+
+         <div className="grid grid-cols-1 md:grid-cols-2">
+
+         <div className="space-y-4 text-center sm:text-left">
+            <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight">
               What is your organization's <span className="italic">monthly</span> hiring volume?
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground">
               Drag the volume slider below to see if iona.ai is a good fit for your organization.
             </p>
           </div>
+
+          <Image src={MyImage} alt="" className=""/>
+
+         </div>
 
           {/* Slider Section */}
           <div className="space-y-6 sm:space-y-8">
@@ -38,7 +52,10 @@ const VolumePage = () => {
                 max={1000}
                 step={1}
                 className="w-full bg-blue-700 transform transition-transform duration-75 ease-in-out group-hover:translate-y-0.5"
-                onValueChange={(e) => setVolume(e[0])}
+                onValueChange={(e) => {
+                  setVolume(e[0])
+                  setIsClicked(true)
+                }}
               />
             </div>
  
@@ -48,14 +65,16 @@ const VolumePage = () => {
             </p>
             
             {/* Conditional Notification - Moved Closer */}
-            {volume > 0 && volume <=100?  (
+            {isClicked && volume > 0 && volume <=100 ?  (
               <div className="mt-4 sm:mt-6">
                 <Notify />
               </div>
 
-            ): <div className="mt-4 sm:mt-6"><KeyChallenge /></div> }
+            ): isClicked && <div className="mt-4 sm:mt-6"><KeyChallenge /></div> }
           </div>
         </div>
+
+
       </main>
 
     

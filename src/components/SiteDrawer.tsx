@@ -8,7 +8,7 @@ import Link from "next/link"
 export function SiteDrawer() {
   const navItems = [
     {
-      title: "Is iona.ai a good fit?",
+      title: "is iona.ai a good fit?",
       items: [
         {
           title: "Monthly hiring volume",
@@ -38,23 +38,25 @@ export function SiteDrawer() {
     <Sheet>
       <SheetTrigger asChild>
         <Button variant="ghost" size="icon">
-          <Menu className="h-12 w-12" />
+          <Menu className="h-24 w-24" />
         </Button>
       </SheetTrigger>
       <SheetContent className="w-[400px] sm:w-[540px]">
         <div className="grid gap-6 py-6">
+          <h1 className="text-4xl text-[#001A72] font-bold font-michroma">iona.ai </h1>
+
           {navItems.map((item) => (
-            <div key={item.title} className="space-y-4">
-              <h4 className="font-medium text-xl">{item.title}</h4>
+            <div key={item.title} className="space-y-6">
+              <h4 className="font-medium text-[20px] font-michroma">{item.title}</h4>
               <div className="grid gap-4">
                 {item.items.map((subItem) => (
                   <Link
                     key={subItem.title}
                     href={subItem.href}
-                    className="group grid gap-1 p-4 hover:bg-accent rounded-lg transition-colors"
+                    className="group grid gap-1 py-4 "
                   >
                     <div className="font-medium group-hover:text-accent-foreground">{subItem.title}</div>
-                    <div className="text-sm text-muted-foreground group-hover:text-accent-foreground">
+                    <div className="text-sm font-mono text-muted-foreground group-hover:text-accent-foreground">
                       {subItem.description}
                     </div>
                   </Link>
