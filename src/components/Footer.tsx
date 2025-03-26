@@ -28,7 +28,7 @@ function Footer() {
   return (
     <footer className="bg-[#d9d9d9] border-t">
       <div className="bg-[#d9d9d9] px-16 pb-4">
-        <div className="grid gap-12 md:grid-cols-3 mb-12 pt-12">
+        <div className="flex justify-between  mb-12 pt-12">
           <div className="space-y-4">
             <h3 className="font-semibold font-michroma text-[#001A72] text-6xl mb-2">
               {" "}
@@ -38,24 +38,6 @@ function Footer() {
             <div className="pt-2">
              
               <div className="flex gap-4 mt-6">
-                <a
-                  href="https://www.facebook.com"
-                  target="_blank"
-                  rel="noopener"
-                  className="flex items-center justify-center w-14 h-14 rounded-full bg-white text-gray-500 hover:text-blue-600 shadow-md transition-colors duration-200"
-                >
-                  <Image src={Fb} className="" alt="FB" />
-                </a>
-
-                <a
-                     href="https://www.x.com"
-                     target="_blank"
-                     rel="noopener"
-                  className="flex items-center justify-center w-14 h-14 rounded-full bg-white text-gray-500 hover:text-blue-600 shadow-md transition-colors duration-200"
-                >
-                 <Image src={X} className="" alt="X" />
-                </a>
-
                 <a
                   href="https://www.linkedin.com/"
                     target="_blank"
@@ -102,14 +84,14 @@ function Footer() {
                 />
               </svg>
               <div className="text-gray-600 ">
-                <p>128 City Road</p>
-                <p>London, United Kingdom</p>
-                <p>EC1V 2NX</p>
+         
+                <p> 33 Camden High Street</p>
+                <p>NW1 7JE</p>
               </div>
             </div>
           </div>
 
-          <div className="space-y-2 ">
+          {/* <div className="space-y-2 ">
             <h3 className="font-semibold text-lg mb-4">Noida Office</h3>
             <div className="flex items-start gap-2">
               <svg
@@ -138,7 +120,7 @@ function Footer() {
                 <p>Sector 16, Noida</p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className=" border-t border-gray-200">

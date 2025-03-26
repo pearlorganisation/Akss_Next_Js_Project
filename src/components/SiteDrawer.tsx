@@ -18,7 +18,7 @@ export function SiteDrawer() {
         {
           title: "Key challenges",
           description: "Learn how we solve critical hiring problems",
-          href: "/key-challenges",
+          href: "/2-key-challenges",
         },
         {
           title: "Case studies",

@@ -29,7 +29,7 @@ const VolumePage = () => {
             <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight">
               What is your organization's <span className="italic">monthly</span> hiring volume?
             </h1>
-            <p className="text-base sm:text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg font-bold text-muted-foreground">
               Drag the volume slider below to see if iona.ai is a good fit for your organization.
             </p>
           </div>
@@ -60,7 +60,7 @@ const VolumePage = () => {
             </div>
  
 
-            <p className="text-sm sm:text-base text-yellow-600 font-medium text-center sm:text-left">
+            <p className="text-sm sm:text-base text-black font-medium text-center sm:text-left">
               Start by dragging the slider to input your organization's hiring volume.
             </p>
             
