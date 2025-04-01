@@ -1,12 +1,14 @@
 'use client'
 import Link from 'next/link'
-import { useEffect } from "react";
- 
+import { useState } from "react";  
+
 const page = () => {
+   const [isLoadingIframe, setIsLoadingIframe] = useState(true);
+
   return (
-    <div> 
-    <div className='font-mono'>
-            <div className="p-6 bg-gray-50 rounded-lg shadow-md">
+    <div>
+       <div className='font-mono'>
+        <div className="p-6 bg-gray-50 rounded-lg shadow-md">
           <Link href={'/'} className="text-blue-600 text-sm flex items-center mb-4">
             ← Back
           </Link>
@@ -22,19 +24,31 @@ const page = () => {
             <li>100% data accuracy guaranteed!</li>
           </ul>
         </div>
+      </div>
 
-          </div>
-          {/** for scheduling the meeting */}
-   <div className="flex justify-center items-center  ">
-      <iframe
-        src="https://cal.com/amitsrivastava" // Replace with your Cal.com username
-        width="100%"
-        height="600px"
-        style={{ border: "none" }}
-      ></iframe>
-    </div>
+      {/* --- Scheduling Section --- */}
+     
+      <div className="flex justify-center items-center h-[600px] w-full mt-6">
+         {isLoadingIframe && (
+          <div className="text-center text-gray-500">
+            Loading scheduling options...
+           </div>
+        )}
+
+        {/* The iframe itself */}
+        <iframe
+          src="https://cal.com/amitsrivastava"  
+          width="100%"
+          height="600px"
+          style={{
+            border: "none",
+             display: isLoadingIframe ? 'none' : 'block'
+          }}
+           onLoad={() => setIsLoadingIframe(false)}
+        ></iframe>
+      </div>
     </div>
   )
 }
 
-export default page
+export default page;
