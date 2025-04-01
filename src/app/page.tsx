@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 
-import MyImage from "../../public/image1.png";
+import MyImage from "../../public/homepage.png";
 import Image from "next/image";
 
 import { useRouter } from "next/navigation";

@@ -7,7 +7,7 @@ import { Slider } from "@/components/ui/slider"
 import KeyChallenge from "@/components/KeyChallenge"
 import Image from "next/image"
 
-import MyImage from "../../../public/image1.png";
+import MyImage from "../../../public/homepage2.png";
 
 
 // slider 
@@ -34,7 +34,7 @@ const VolumePage = () => {
             </p>
           </div>
 
-          <Image src={MyImage} alt="" className=""/>
+          <Image src={MyImage} alt="" className="m-6"/>
 
          </div>
 
